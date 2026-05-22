@@ -1,0 +1,48 @@
+NOTIFICAÇÃO POR GMAIL — EmailJS (grátis)
+======================================
+
+Quando o admin confirma o pagamento, o cliente recebe e-mail no Gmail dele.
+
+1. Crie conta em https://www.emailjs.com
+2. Email Services → Add → Gmail (sua conta adminlucymodas@gmail.com)
+3. Crie 2 templates:
+
+TEMPLATE "template_cliente_pago" (para o cliente):
+  To: {{to_email}}
+  Subject: ✅ Pedido pago — Lucy Modas
+  Corpo:
+    Olá {{to_name}}!
+    Seu pagamento de {{valor}} foi confirmado.
+    Pedido: {{order_id}}
+    Itens: {{itens}}
+    Obrigado pela compra!
+    Lucy Modas
+
+TEMPLATE "template_cliente_enviado" (pedido saiu da loja):
+  To: {{to_email}}
+  Subject: 📦 Seu pedido saiu da loja — Lucy Modas
+  Corpo:
+    Olá {{to_name}}!
+    {{mensagem}}
+    Pedido: {{order_id}}
+    Itens: {{itens}}
+    Valor: {{valor}}
+    Obrigado!
+    Lucy Modas
+
+TEMPLATE "template_admin_pedido" (novo pedido no painel):
+  To: adminlucymodas@gmail.com
+  Subject: 🛒 Novo pedido — {{cliente}}
+  Corpo:
+    Cliente: {{cliente}}
+    Gmail: {{email_cliente}}
+    Tel: {{telefone}}
+    Endereço: {{endereco}}
+    {{cidade}}
+    Itens: {{itens}}
+    Valor: {{valor}}
+    Código: {{payment_code}}
+
+4. Copie Public Key e Service ID para email-config.js
+
+Sem EmailJS: o painel admin e Firebase continuam funcionando; o e-mail só aparece no console (F12) para teste.

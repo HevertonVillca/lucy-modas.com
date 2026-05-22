@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin - Lucy Modas</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="admin-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>📦 Lucy Modas</h1>
+            <span class="admin-badge">ADMIN</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-tab="inicio">
+                <span class="nav-icon">🏁</span> Inicio
+
+            </button>
+            <button class="nav-item" data-tab="pendentes">
+                <span class="nav-icon">⏳</span> Pendentes
+                <span id="badgePendentes" class="nav-badge">0</span>
+            </button>
+            <button class="nav-item" data-tab="pagos">
+                <span class="nav-icon">✅</span> Pagos
+                <span id="badgePagos" class="nav-badge nav-badge-green">0</span>
+            </button>
+            <button class="nav-item" data-tab="enviados">
+                <span class="nav-icon">🚚</span> Enviados
+                <span id="badgeEnviados" class="nav-badge nav-badge-orange">0</span>
+            </button>
+<button class="nav-item" data-tab="clientes" aria-label="Clientes logados">
+                <span class="nav-icon">👥</span> Clientes logados
+            </button>
+            <button class="nav-item" data-tab="config">
+                <span class="nav-icon">⚙️</span> Configurações
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="btnRefresh" class="btn-refresh">
+                <span>🔄</span> Atualizar
+            </button>
+            <a href="index.html" class="btn-voltar">
+                <span>🏠</span> Voltar à Loja
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="content-header">
+            <h2 id="tabTitle">Início</h2>
+
+            <div class="header-actions">
+                <span id="lastUpdate" class="last-update">Última atualização: --</span>
+            </div>
+        </header>
+
+        <!-- Alerta -->
+        <div id="adminAlerta" class="admin-alerta" style="display:none;"></div>
+
+        <!-- Dashboard Tab -->
+        <section id="tab-inicio" class="tab-content active">
+
+
+            <!-- Cards Stats -->
+            <div class="stats-grid">
+                <div class="stat-card stat-rosa">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalPedidos">0</span>
+                        <span class="stat-label">Total Pedidos</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-verde">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalVendas">R$ 0</span>
+                        <span class="stat-label">Vendas Totais</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-azul">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="clientesTotal">0</span>
+                        <span class="stat-label">Clientes</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-amarelo">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="pendentesCount">0</span>
+                        <span class="stat-label">Pendentes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="section-box">
+                <h3>📋 Últimos Pedidos</h3>
+                <div id="listaPedidosRecentes"></div>
+            </div>
+        </section>
+
+        <!-- Pendentes Tab -->
+        <section id="tab-pendentes" class="tab-content">
+            <div class="section-box">
+                <h3>⏳ Pedidos Pendentes de Pagamento</h3>
+                <div id="listaPendentes"></div>
+            </div>
+        </section>
+
+        <!-- Pagos Tab -->
+        <section id="tab-pagos" class="tab-content">
+            <div class="section-box">
+                <h3>✅ Pedidos Pagos (Aguardando Envio)</h3>
+                <div id="listaPagos"></div>
+            </div>
+        </section>
+
+        <!-- Enviados Tab -->
+        <section id="tab-enviados" class="tab-content">
+            <div class="section-box">
+                <h3>🚚 Pedidos Enviados</h3>
+                <div id="listaEnviados"></div>
+            </div>
+        </section>
+
+        <!-- Config Tab -->
+        <section id="tab-config" class="tab-content">
+            <div class="section-box">
+                <h3>⚙️ Configurações</h3>
+                <div class="config-info">
+                    <p><strong>Email Admin:</strong> <span id="configEmail">adminlucymodas@gmail.com</span></p>
+                    <p><strong>Backend:</strong> <span id="configBackend">Conectando...</span></p>
+                    <p><strong>Versão:</strong> 2.0</p>
+                </div>
+                <div class="config-actions">
+<!-- Removido: botão de teste de conexão (não é necessário) -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="firebase-config.js"></script>
+<script src="email-config.js"></script>
+<!-- IMPORTANTE: admin usa apenas admin.js para evitar conflitos de handlers do admin antigo (script.js) -->
+<script src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Firebase / local
+.firebaserc
+
+# Node
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files (se existirem no seu projeto)
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Media artifacts (opcional)
+*.mov
+*.png.jpg
+

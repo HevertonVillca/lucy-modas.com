@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucy Modas 2.0 - E-Commerce Completo</title>
+    <link rel="stylesheet" href="style.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!--Localização  -->
+
+        <div class="location-modal" id="locationModal">
+
+        <div class="location-content">
+
+        <span id="fecharLocalizacao">&times;</span>
+
+        <h2>📍 Como chegar (Loja Física)</h2>
+
+        <p>𝐋𝐨𝐣𝐚 𝐟í𝐬𝐢𝐜𝐚 𝐒𝐡𝐨𝐩𝐩𝐢𝐧𝐠 𝐂𝐚𝐧𝐢𝐧𝐝𝐞 box 217 terreo (ultimo corredor)<br>São Paulo, Brazil 03031000</p>
+
+        <div class="loc-whats-wrap">
+          <a id="whatsLocalizacaoBtn" class="loc-whats-btn" href="https://wa.me/5511942129432?text=%F0%9F%93%8D%20Ol%C3%A1%20Lucy%20Modas%2C%20quero%20a%20localiza%C3%A7%C3%A3o%20da%20loja%20e%20como%20chegar.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Pedir localização no WhatsApp
+          </a>
+        </div>
+
+        </div>
+
+        </div>
+
+    <!-- MODAL ESCOLHER ESTAMPA -->
+    <div id="estampaModal" class="estampa-modal-overlay">
+        <div class="estampa-modal">
+            <button type="button" class="estampa-modal-fechar" id="fecharEstampaModal" aria-label="Fechar">&times;</button>
+            <h3 id="estampaModalTitulo">Escolha a estampa</h3>
+            <p class="estampa-modal-sub" id="estampaModalSubTitulo">—</p>
+            <div class="estampa-modal-preview">
+                <img id="estampaModalPreview" src="" alt="Preview estampa">
+                <p id="estampaModalNome">—</p>
+            </div>
+            <div id="estampaModalGrid" class="estampa-scroll"></div>
+            <button type="button" id="confirmarEstampaBtn" class="btn-confirmar-estampa" disabled>Adicionar ao carrinho</button>
+        </div>
+    </div>
+
+    <!-- MODAL LOGIN/CADASTRO -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Entre na sua conta</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <input type="email" id="emailInput" placeholder="📧 Seu Gmail" required>
+                <input type="password" id="passwordInput" placeholder="🔒 Senha" required>
+                <div class="form-options">
+                    <a href="#" id="forgotPasswordLink" class="recovery-top-link">Esqueci a senha</a>
+                    <label><input type="checkbox" id="rememberMe"> Lembrar-me</label>
+                    <a href="#" id="toggleForm">Criar nova conta</a>
+                </div>
+                <button type="submit" class="btn-login">Entrar</button>
+            </form>
+
+            <div id="registerForm" style="display: none;">
+                <form id="registerFormSubmit">
+                    <input type="text" id="nomeInput" placeholder="👤 Nome Completo" required>
+                    <input type="email" id="registerEmail" placeholder="📧 Gmail" required>
+                    <input type="tel" id="telefoneInput" placeholder="📱 WhatsApp" required>
+                    <input type="text" id="enderecoInput" placeholder="📍 Endereço" required>
+                    <input type="text" id="numeroCasaInput" placeholder="🏠 Número da Casa" required>
+                    <input type="text" id="bairroInput" placeholder="🏘️ Bairro" required>
+                    <input type="text" id="cidadeInput" placeholder="🌆 Cidade" required>
+                    <input type="text" id="estadoInput" placeholder="🗺️ Estado" required>
+                    <input type="text" id="cepInput" placeholder="📮 CEP" required>
+                    <input type="password" id="registerPassword" placeholder="🔒 Senha (mín. 6)" required>
+                    <button type="submit" class="btn-register">Criar Conta</button>
+                </form>
+            </div>
+
+            <div id="forgotPasswordForm" style="display:none;">
+                <form id="forgotPasswordRequest">
+                    <p class="forgot-subtitle">Recupere sua conta com código via Gmail ou telefone.</p>
+
+                    <div class="recovery-method">
+                        <button type="button" class="recovery-method-btn active" id="methodEmailBtn">Por Gmail</button>
+                        <button type="button" class="recovery-method-btn" id="methodPhoneBtn">Por telefone</button>
+                    </div>
+
+                    <input type="hidden" id="recoveryMethod" value="email">
+
+                    <input type="email" id="recoveryEmail" placeholder="📧 Seu Gmail" autocomplete="email" required>
+                    <input type="tel" id="recoveryPhone" placeholder="📱 Seu número (WhatsApp)" autocomplete="tel" style="display:none;" required>
+
+                    <button type="submit" class="btn-login">Enviar código</button>
+
+                    <small id="recoveryHint" style="display:block; margin-top:8px; color:#8a8a8a;">
+                        Modo local: o código será exibido para teste.
+                    </small>
+                </form>
+
+                <form id="forgotPasswordVerify" style="display:none;">
+                    <p class="forgot-subtitle">Digite o código de 6 dígitos.</p>
+                    <input type="text" id="recoveryOtp" placeholder="Código" maxlength="6" inputmode="numeric" required>
+
+                    <button type="submit" class="btn-login">Verificar código</button>
+                    <a href="#" id="backToLoginFromVerify" class="recovery-back-link">Voltar</a>
+                </form>
+
+                <form id="forgotPasswordReset" style="display:none;">
+                    <p class="forgot-subtitle">Crie uma nova senha.</p>
+                    <input type="password" id="newPasswordInput" placeholder="Nova senha (mín. 6)" required>
+
+                    <button type="submit" class="btn-login">Redefinir senha</button>
+                    <a href="#" id="backToLoginFromReset" class="recovery-back-link">Voltar</a>
+                </form>
+
+                <div id="recoveryLocalDebug" style="display:none; margin-top:10px; padding:10px; border:1px dashed #ff69b4; border-radius:10px; background:rgba(255,105,180,0.05);">
+                    <div><strong>Debug OTP (local):</strong> <span id="recoveryLocalOtpText"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header-v4">
+        <nav class="navbar-v4">
+            <div class="logo-v4">
+                <h2><i class="fas fa-diamond"></i> Lucy Modas 2.0</h2>
+            </div>
+            <ul class="nav-menu-v4">
+                <li><a href="#home-v4" class="nav-link-v4 active-v4">🏠 Home</a></li>
+                <li><a href="#produtos-v4" class="nav-link-v4">👗 Produtos</a></li>
+                <li><a href="#promocoes-v4" class="nav-link-v4">🔥 Promoções</a></li>
+                <li><a href="#contato-v4" class="nav-link-v4">📞 Contato</a></li>
+                <li><a href="#" class="nav-link-v4" id="btnLocalizacao">📍 Localização</a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="./admin.html" class="admin-link">
+                    <i class="fas fa-user-shield"></i>
+                </a>
+                <button id="loginBtn" class="login-btn"><i class="fas fa-user"></i> Entrar</button>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                    <span class="logout-btn" id="loginStatusBtn" style="display:none;"></span>
+                </div>
+            </div>
+            <div class="menu-toggle-v4">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CARRINHO MODAL -->
+    <div id="cartModal" class="cart-modal-overlay">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h3>🛒 Meu Carrinho</h3>
+                <button class="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-total">
+                <div class="total-row">
+                    <span>Total:</span>
+                    <span class="total-value" id="cartTotal">R$ 0,00</span>
+                </div>
+                <div class="desconto-row" id="descontoRow" style="display: none;">
+                    <span>Desconto Atacado (8+):</span>
+                    <span class="desconto-value" id="descontoValue">-R$ 0,00</span>
+                </div>
+            </div>
+            <button class="btn-pagar" id="btnPagar">Pagar via PIX <i class="fas fa-bolt"></i></button>
+        </div>
+    </div>
+
+    <!-- PIX MODAL -->
+    <div id="pixModal" class="pix-modal-overlay">
+        <div class="pix-modal">
+            <div class="pix-header" style="display:flex;justify-content:space-between;align-items:center;">
+                <h3>💳 Pagamento PIX Seguro</h3>
+                <button type="button" class="close-pix" id="closePixModal" aria-label="Fechar">&times;</button>
+            </div>
+            <div class="pix-instrucoes">
+                <div class="pedido-resumo" id="pedidoResumo"></div>
+                <div class="pix-dados">
+                    <div class="qr-code-pix" id="qrCodeContainer">
+                        <img id="qrCodeImg" alt="QR Code PIX" style="max-width:220px;border-radius:12px;display:none;">
+                    </div>
+                </div>
+            </div>
+                <div class="seguranca-pix">
+                    <p class="pix-aviso" style="margin:0 0 0.5rem;color:#666;font-size:0.95rem;">
+                        Escaneie o QR ou copie o PIX. Válido por <strong>24 horas</strong>.
+                    </p>
+                    <p id="pixValorDisplay" style="font-size:1.3rem;font-weight:800;color:#FF69B4;margin-bottom:0.75rem;text-align:center;">R$ 0,00</p>
+                    <p id="pixStatusMsg" style="text-align:center;font-size:0.9rem;margin-bottom:1rem;">Gerando pagamento...</p>
+                    <input type="hidden" id="pixCopiaColaInput" value="">
+                    <button id="copiarPixCopiaColaBtn" type="button" class="btn-copiar-pix">Copiar PIX</button>
+                </div>
+
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="home-v4" class="hero-v4">
+        <div class="hero-gradient"></div>
+        <div class="hero-content-v4">
+            <h1>Lucy Modas 2.0</h1>
+            <p>Moda Feminina Exclusiva • Atacado e Varejo</p>
+            <div class="hero-stats">
+                <div class="stat"><span id="produtosCount">156</span>+ Produtos</div>
+                <div class="stat"><span id="clientesCount">2.4</span>k Clientes</div>
+                <div class="stat"><span id="enviosCount">98</span>% Satisfação</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 Produtos + 3 Destaques -->
+    <section id="produtos-v4" class="produtos-v4">
+        <div class="container">
+            <h2 class="section-title-v4">👗 Todos os Produtos</h2>
+            <div class="produtos-grid-v4">
+                <div class="produto-v4 produto-com-estampas" data-nome="Millena Manga Curta" data-preco="37" data-atacado="29" data-produto-id="millena-manga-curta">
+                    <div class="galeria-produto">
+                        <div class="galeria-principal">
+<img class="galeria-img-principal millena-img-principal" src="./image/millenamangacurta1.png" alt="Millena Manga Curta">
+                            <button type="button" class="add-cart-btn add-cart-estampas" data-produto-id="millena-manga-curta"><i class="fas fa-cart-plus"></i></button>
+                        </div>
+                        <div class="galeria-miniaturas">                                                       
+                             <button type="button" class="miniatura" data-img="./image/millenamangacurta1.png" data-estampa="Estampa 1" aria-label="Estampa 1">
+                                <img src="./image/millenamangacurta1.png" alt="Estampa 1">
+                            </button>
+                            <button type="button" class="miniatura ativa" data-img="./image/millenamangacurta2.png" data-estampa="Estampa 2" aria-label="Estampa 2">
+                                <img src="./image/millenamangacurta2.png" alt="Estampa 2">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangacurta3.png" data-estampa="Estampa 3" aria-label="Estampa 3">
+                                <img src="./image/millenamangacurta3.png" alt="Estampa 3">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangacurta4.png" data-estampa="Estampa 4" aria-label="Estampa 4">
+                                <img src="./image/millenamangacurta4.png" alt="Estampa 4">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangacurta5.png" data-estampa="Estampa 5" aria-label="Estampa 5">
+                                <img src="./image/millenamangacurta5.png" alt="Estampa 5">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangacurta6.png" data-estampa="Estampa 6" aria-label="Estampa 6">
+                                <img src="./image/millenamangacurta6.png" alt="Estampa 6">
+                            </button>   
+                            <button type="button" class="miniatura" data-img="./image/millenamangacurta7.png" data-estampa="Estampa 7" aria-label="Estampa 7">
+                                <img src="./image/millenamangacurta7.png" alt="Estampa 7">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangacurta8.png" data-estampa="Estampa 8" aria-label="Estampa 8">
+                                <img src="./image/millenamangacurta8.png" alt="Estampa 8">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="produto-info-v4">
+<h3>Millena Manga Curta</h3>
+                        <p class="estampa-selecionada-label">Estampa: <span class="millenaEstampaAtual">Estampa 1</span></p>
+                        <div class="precos">
+                            <span class="preco-normal">R$ 37</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-v4 produto-com-estampas" data-nome="Millena Manga Longa" data-preco="67" data-atacado="29" data-produto-id="millena-manga-longa">
+                    <div class="galeria-produto">
+                        <div class="galeria-principal">
+<img class="galeria-img-principal millena-img-principal" src="./image/millenamangalonga.png" alt="Millena Manga Longa">
+                            <button type="button" class="add-cart-btn add-cart-estampas" data-produto-id="millena-manga-longa"><i class="fas fa-cart-plus"></i></button>
+                        </div>
+                        <div class="galeria-miniaturas">                                                       
+                             <button type="button" class="miniatura" data-img="./image/millenamangalonga.png" data-estampa="Estampa 1" aria-label="Estampa 1">
+                                <img src="./image/millenamangalonga.png" alt="Estampa 1">
+                            </button>
+                            <button type="button" class="miniatura ativa" data-img="./image/millenamangalonga2.png" data-estampa="Estampa 2" aria-label="Estampa 2">
+                                <img src="./image/millenamangalonga2.png" alt="Estampa 2">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga3.png" data-estampa="Estampa 3" aria-label="Estampa 3">
+                                <img src="./image/millenamangalonga3.png" alt="Estampa 3">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga4.png" data-estampa="Estampa 4" aria-label="Estampa 4">
+                                <img src="./image/millenamangalonga4.png" alt="Estampa 4">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga5.png" data-estampa="Estampa 5" aria-label="Estampa 5">
+                                <img src="./image/millenamangalonga5.png" alt="Estampa 5">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga6.png" data-estampa="Estampa 6" aria-label="Estampa 6">
+                                <img src="./image/millenamangalonga6.png" alt="Estampa 6">
+                            </button>   
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga7.png" data-estampa="Estampa 7" aria-label="Estampa 7">
+                                <img src="./image/millenamangalonga7.png" alt="Estampa 7">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga8.png" data-estampa="Estampa 8" aria-label="Estampa 8">
+                                <img src="./image/millenamangalonga8.png" alt="Estampa 8">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga9.png" data-estampa="Estampa 9" aria-label="Estampa 9">
+                                <img src="./image/millenamangalonga9.png" alt="Estampa 9">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga10.png" data-estampa="Estampa 10" aria-label="Estampa 10">
+                                <img src="./image/millenamangalonga10.png" alt="Estampa 10">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga11.png" data-estampa="Estampa 11" aria-label="Estampa 11">
+                                <img src="./image/millenamangalonga11.png" alt="Estampa 11">
+                            </button>   
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga12.png" data-estampa="Estampa 12" aria-label="Estampa 12">
+                                <img src="./image/millenamangalonga12.png" alt="Estampa 12">
+                            </button>
+                            <button type="button" class="miniatura" data-img="./image/millenamangalonga13.png" data-estampa="Estampa 13" aria-label="Estampa 13">
+                                <img src="./image/millenamangalonga13.png" alt="Estampa 13">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="produto-info-v4">
+                        <h3>Millena Manga Longa</h3>
+<p class="estampa-selecionada-label">Estampa: <span class="millenaEstampaAtual">Estampa 1</span></p>
+                        <div class="precos">
+                            <span class="preco-normal">R$ 67</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 PROMOÇÕES DESTAQUE SEPARADAS -->
+    <section id="promocoes-v4" class="promocoes-v4">
+        <div class="container">
+            <h2 class="section-title-v4">⏰ PROMOÇÕES EXCLUSIVAS</h2>
+            <div class="promocoes-destaque-v4">
+                <div class="promo-separada promo-3x105" data-timer="93600">
+                    <div class="promo-timer-v4"></div>
+                    <div class="promo-titulo">3 POR R$105</div>
+                    <img src="./image/millenamangacurta2.png" alt="Promo 105">
+                    <button class="add-cart-promo">Adicionar 3</button>
+                </div>
+                <div class="promo-separada promo-vestido" data-timer="85530">
+                    <div class="promo-timer-v4"></div>
+                    <div class="promo-titulo">VESTIDO R$45</div>
+                    <img src="./image/millenamangacurta1.png" alt="Vestido">
+                    <button class="add-cart-promo">Comprar</button>
+                </div>
+                <div class="promo-separada promo-3x100" data-timer="86640">
+                    <div class="promo-timer-v4"></div>
+                    <div class="promo-titulo">3 POR R$100</div>
+                    <div class="variedades-promo">
+                        <img src="./image/millenamangalonga3.png">
+                        <img src="./image/millenamangalonga4.png">
+                        <img src="./image/millenamangalonga2.png">
+                    </div>
+                    <button class="add-cart-promo">Adicionar Pacote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato-v4" class="contato-v4">
+        <div class="container">
+            <h2 class="section-title-v4">📲 Conecte-se Conosco</h2>
+            <div class="redes-sociais">
+                <a href="https://www.tiktok.com/@lucy_modas2" target="_blank" class="rede-btn tiktok">
+                    <i class="fab fa-tiktok"></i> TikTok Shop
+                </a>
+                <a href="https://www.instagram.com/Lucy_modas2.0" target="_blank" class="rede-btn instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://wa.me/5511942129432" target="_blank" class="rede-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="email-config.js"></script>
+    <script src="script.js?v=1"></script>
+
+    <!-- Ajuste rápido: garante saída segura do modal do carrinho/PIX quando recarrega -->
+</body>
+</html>
+

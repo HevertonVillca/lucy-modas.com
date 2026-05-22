@@ -1,0 +1,32 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "backend/**",
+      "package.json",
+      "package-lock.json",
+      "*.md",
+      "*.txt",
+      "*.ps1",
+      "TODO.md",
+      "admin.js",
+      "copiar-video.ps1"
+    ],
+    "cleanUrls": true,
+    "rewrites": [
+      { "source": "/admin", "destination": "/admin.html" }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css|html)",
+        "headers": [{ "key": "Cache-Control", "value": "max-age=3600" }]
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}
