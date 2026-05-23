@@ -210,7 +210,7 @@ body {
     height: 100vh;
     background:
     linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    url('./image/logoprincipal.png.jpg');
+url('./logo/logoprincipal.png.jpg');
 
     background-size: cover;
     background-position: center;
@@ -1214,9 +1214,6 @@ transform:scale(1.1);
 .estampa-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #FF1493, #FF69B4);
 }
-
-/* Preview responsivo do modal de estampas */
-.estampa-modal-preview img {
 
 /* Preview responsivo do modal de estampas */
 .estampa-modal-preview img {
