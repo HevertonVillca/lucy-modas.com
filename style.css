@@ -112,6 +112,20 @@ body {
     align-items: center;
 }
 
+.logo-v4 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-v4 .logo-img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.25);
+}
+
 .logo-v4 h2 {
     background: linear-gradient(135deg, #FF69B4, #FFD700);
     -webkit-background-clip: text;
@@ -119,6 +133,7 @@ body {
     font-family: 'Playfair Display', serif;
     background-clip: text;
 }
+
 
 .nav-menu-v4 {
     display: flex;
@@ -1263,4 +1278,5 @@ transform:scale(1.1);
   font-weight: 600;
   color: #444;
   text-align: center;
+
 }
